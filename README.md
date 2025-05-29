@@ -1,162 +1,122 @@
-# Ex.05 Design a Website for Server Side Processing
-## Date:12.05.2025
+# Ex.06 Book Front Cover Page Design
+## Date:12.05.25
 
 ## AIM:
- To design a website to calculate the power of a lamp filament in an incandescent bulb in the server side. 
-
-
-## FORMULA:
-P = I<sup>2</sup>R
-<br> P --> Power (in watts)
-<br> I --> Intensity
-<br> R --> Resistance
+To design a book front cover page using HTML and CSS.
 
 ## DESIGN STEPS:
 
 ### Step 1:
-Clone the repository from GitHub.
+Create a Django Admin project.
 
 ### Step 2:
-Create Django Admin project.
+Create an app in the Django interface.
 
 ### Step 3:
-Create a New App under the Django Admin project.
+Create a folder named 'static' in the app folder.
 
 ### Step 4:
-Create python programs for views and urls to perform server side processing.
+Create a new HTML file in the static folder.
 
 ### Step 5:
-Create a HTML file to implement form based input and output.
+Write the HTML code with relevant CSS properties.
 
 ### Step 6:
-Publish the website in the given URL.
+Choose the appropriate style and color scheme.
 
-## PROGRAM :
-math.html
-```<html>
+### Step 7:
+Insert the images in their appropriate places.
 
+### Step 8:
+Publish the website in the LocalHost.
+
+## PROGRAM:
+```
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>POWER OF LAMP IN INCANDESCENT BULD</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <style type="text/css">
-        body {
-            background-color:white;
-        }
+  <meta charset="UTF-8">
+  <title>Book Cover</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: 'Georgia', serif;
+    }
 
-        .edge {
-            display: flex;
-            height: 100vh;
-            width: 100%;    
-            justify-content: center;
-            align-items: center;
-        }
+    .book-cover {
+      width: 400px;
+      height: 600px;
+      background: palevioletred;
+      border: 2px solid #333;
+      padding: 40px 30px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
 
-        .box {
-            display: block;
-            width: 500px;
-            min-height: 300px;
-            font-size: 20px;
-            background: rgb(127, 13, 214);
-            background: linear-gradient(90deg, rgba(157, 83, 212) 9%, rgb(193, 166, 202) 56%);
-            border-radius: 10px;
-            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-        }
+    .title {
+      font-size: 28px;
+      font-weight: bold;
+      color: #2e2e2e;
+      text-align: center;
+      line-height: 1.3;
+    }
 
-        .formelt {
-            color: whitesmoke;
-            text-align: center;
-            margin-top: 7px;
-            margin-bottom: 6px;
-        }
+    .subtitle {
+      font-size: 16px;
+      margin-top: 10px;
+      text-align: center;
+      font-style: italic;
+    }
 
-        h1 {
-            color: white;
-            text-align: center;
-            padding-top: 20px;
-        }
-        input{
-            margin: 5px;
-            padding: 5px;
-            border-radius: 5px;
-            border: none;
+    .image {
+      flex: 1;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/6/65/Simple_flowers_black_line_art.png') center/contain no-repeat;
+      margin: 30px 0;
+    }
 
-        }
-    </style>
+    .author {
+      font-size: 18px;
+      text-align: center;
+      color: #444;
+      margin-top: 20px;
+    }
+
+    .line {
+      height: 2px;
+      background: #333;
+      width: 50px;
+      margin: 10px auto;
+    }
+  </style>
 </head>
-
 <body>
-    <div class="edge">
-        <div class="box">
-            <h1>POWER OF LAMP IN INCANDESCENT BULD</h1>
-            <form method="POST">
-                {% csrf_token %}
-                <div class="formelt">
-                    Intensity : <input type="text" name="Intensity" value="{{I}}"></input>(in A)<br />
-                </div>
-                <div class="formelt">
-                    Resistence : <input type="text" name="Resistence" value="{{R}}"></input>(in Ω)<br />
-                </div>
-                <div class="formelt">
-                    <input type="submit" value="Calculate"></input><br />
-                </div>
-                <div class="formelt">
-                    Power : <input type="text" name="Power" value="{{Power}}"></input>W<br />
-                </div>
-            </form>
-        </div>
+  <div class="book-cover">
+    <div>
+      <div class="title">The Psychology of Simplicity</div>
+      <div class="line"></div>
+      <div class="subtitle">Understanding the beauty of less</div>
     </div>
+    <div class="image">
+        <img src="https://img.freepik.com/free-vector/flat-world-mental-health-day-background_23-2149634438.jpg?t=st=1744720480~exp=1744724080~hmac=f1760139b6a1644521a6843c7039f2b45bdc688d25f4f3a479e1d59dcfad5515&w=1380" length="10%" width="100%">
+    </div>
+    <div class="author">By Morgan Simplar</div>
+  </div>
 </body>
-
 </html>
-```
-views.py
-```
-from django.shortcuts import render
-
-def powerlamp(request):
-    context={}
-    context['Power'] = ""
-    context['I'] = ""
-    context['R'] = ""
-    if request.method == 'POST':
-        print("POST method is used")
-        I = request.POST.get('Intensity','')
-        R = request.POST.get('Resistence','')
-        print('request=',request)
-        print('Intensity=',I)
-        print('Resistence=',R)
-        Power = int(I) * int(I) * int(R)
-        context['Power'] = Power
-        context['I'] = I
-        context['R'] = R
-        print('Power=',Power)
-    return render(request,'mathapp/math.html',context)
-```
-urls.py
-```
-from django.contrib import admin
-from django.urls import path
-from mathapp import views
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('PowerOfLampFilamentInAnIncandescentBulb/',views.powerlamp,name="PowerOfLampFilamentInAnIncandescentBulb"),
-    path('',views.powerlamp,name="PowerOfLampFilamentInAnIncandescentBulb")
-]
+  
 ```
 
-## SERVER SIDE PROCESSING:
 
-![image](https://github.com/user-attachments/assets/79a6ef7f-9584-47cf-9450-46fc444d9a2a)
-
-
-## HOMEPAGE:
-
-![Screenshot 2025-05-10 113353](https://github.com/user-attachments/assets/9d9810a5-a297-4384-9bac-1a324d89f393)
-
-
-
+## OUTPUT:
+![alt text](<Screenshot 2025-04-28 103440.png>)
 
 ## RESULT:
-The program for performing server side processing is completed successfully.
+The program for designing book front cover page using HTML and CSS is completed successfully.
